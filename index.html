@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Daily-Market-Pulse_2026-07-06_1015IST</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: linear-gradient(180deg, #eef2fb 0%, #f5f7fa 220px);
+    color: #16213e;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px 60px; }
+  header.top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    background: linear-gradient(120deg, #0b1e4d 0%, #1d3fa0 55%, #0d8f8a 100%);
+    border-radius: 0 0 14px 14px;
+    padding: 22px 24px; margin: 0 -20px 22px; color: #fff;
+    box-shadow: 0 6px 18px rgba(11,30,77,0.18);
+  }
+  header.top h1 { font-size: 23px; margin: 0 0 4px; color: #fff; letter-spacing: 0.01em; }
+  header.top .date { font-size: 13px; color: #cfe0ff; }
+  .disclaimer {
+    background: #fff9ec; border-left: 4px solid #e8a317; border-radius: 6px;
+    padding: 12px 16px; font-size: 12.5px; line-height: 1.5; color: #7a4e00; margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .section { margin-bottom: 34px; }
+  .section-head {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+    padding-bottom: 8px; border-bottom: 2px solid;
+  }
+  .section-india .section-head { border-color: #e8a317; }
+  .section-usa .section-head { border-color: #1d4ed8; }
+  .section-head h2 { font-size: 18px; margin: 0; color: #0b1e4d; font-weight: 700; }
+  .idx-strip {
+    display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 16px;
+  }
+  .idx-card {
+    background: #fff; border-left: 4px solid #1d4ed8; border-radius: 8px;
+    padding: 11px 16px; min-width: 150px; box-shadow: 0 2px 6px rgba(11,30,77,0.08);
+  }
+  .idx-card .name { font-size: 11.5px; color: #5a6b82; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+  .idx-card .val { font-size: 17px; font-weight: 700; color: #0b1e4d; margin-top: 3px; }
+  .idx-card .chg { font-size: 12.5px; margin-top: 2px; }
+  .up { color: #059669; font-weight: 700; } .down { color: #dc2626; font-weight: 700; }
+  /* ============================================================
+     LAYOUT INVARIANT — DO NOT BREAK, EVER:
+     No table cell content may overlap an adjacent column. This is
+     enforced by: (1) table-layout:fixed with explicit % widths below,
+     (2) overflow-wrap/word-break on every cell so long unbroken
+     strings (prices, tickers, % moves) wrap inside their own cell
+     instead of spilling into the next one, and (3) no cell class may
+     set white-space:nowrap unless that column's width is verified to
+     fit its longest realistic value. If a new column is added or a
+     value is unusually long, re-check this before publishing.
+     EXCEPTION: the Cap column only ever holds the fixed short words
+     "Large" / "Mid" / "Small" (never variable-length data), so its
+     .cap-tag pill is allowed white-space:nowrap — its column width
+     below is sized to fit "Large" with room to spare, on purpose.
+     ============================================================ */
+  table { width: 100%; table-layout: fixed; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(11,30,77,0.08); }
+  thead th {
+    background: linear-gradient(120deg, #0b1e4d, #1d3fa0); color: #fff; text-align: left; font-size: 11.5px;
+    text-transform: uppercase; letter-spacing: 0.04em; padding: 11px 12px;
+  }
+  thead th:nth-child(1) { width: 17%; }
+  thead th:nth-child(2) { width: 8%; }
+  thead th:nth-child(3) { width: 12%; }
+  thead th:nth-child(4) { width: 13%; }
+  thead th:nth-child(5) { width: 50%; }
+  tbody td {
+    padding: 11px 12px; font-size: 13px; border-bottom: 1px solid #edf1f5; vertical-align: top;
+    overflow-wrap: anywhere; word-break: break-word; white-space: normal; overflow: hidden;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) { background: #f4f8ff; }
+  tbody tr:hover { background: #eaf1ff; }
+  .cap-tag {
+    display: inline-block; font-size: 9px; font-weight: 700; padding: 2px 6px;
+    border-radius: 8px; text-transform: uppercase; letter-spacing: 0.01em; color: #fff;
+    white-space: nowrap; line-height: 1.5;
+  }
+  .cap-large { background: #1d4ed8; }
+  .cap-mid { background: #0d9488; }
+  .cap-small { background: #e8720c; }
+  .stock-name { font-weight: 700; color: #0b1e4d; }
+  .ticker { font-weight: 500; color: #6b7d99; font-size: 12px; }
+  .price { font-weight: 700; color: #0b1e4d; }
+  .price-note { display: block; font-weight: 400; color: #8a97ab; font-size: 10.5px; margin-top: 2px; }
+  .move { font-weight: 700; }
+  .flag {
+    display: inline-block; margin-top: 5px; font-size: 11px; color: #b8500a; font-weight: 700;
+    background: #fff2e0; padding: 2px 8px; border-radius: 6px;
+  }
+  footer.foot {
+    margin-top: 30px; padding-top: 14px; border-top: 2px solid #e2e8f0;
+    font-size: 11.5px; color: #5a6b82; line-height: 1.6;
+  }
+  footer.foot a { color: #1d4ed8; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <h1>Daily Market Pulse — India &amp; USA</h1>
+      <div class="date">Mon, 6 Jul 2026 · 10:15 AM IST (UTC+5:30)</div>
+    </div>
+  </header>
+
+  <div class="disclaimer">
+    <strong>Not investment advice.</strong> Everything below is a same-day news scan, not a recommendation, and not from a licensed research or brokerage source. "Candidates" means the stock is currently in the news for a specific reason — earnings, an order win, a brokerage note, a sharp move — nothing more. Cap-size classification is approximate. Do your own diligence (or a licensed advisor's) before acting, and size positions for the fact that small/mid-cap, order-win, and momentum-driven names carry materially higher risk than the large-cap names on this list.
+  </div>
+
+  <!-- INDIA -->
+  <section class="section section-india">
+    <div class="section-head"><h2>🇮🇳 India</h2></div>
+    <div class="idx-strip">
+      <div class="idx-card" style="border-left-color:#059669">
+        <div class="name">Sensex (live, 9:18 AM)</div>
+        <div class="val">78,078.76</div>
+        <div class="chg up">+315 pts (+0.4%)</div>
+      </div>
+      <div class="idx-card" style="border-left-color:#059669">
+        <div class="name">Nifty 50 (live, 9:18 AM)</div>
+        <div class="val">24,351.10</div>
+        <div class="chg up">+80.25 (+0.33%)</div>
+      </div>
+      <div class="idx-card" style="border-left-color:#e8a317">
+        <div class="name">Drivers</div>
+        <div class="chg">Bank stocks leading (Nifty Bank &amp; Private Bank outperforming) on Asian-peer strength; Nifty IT &amp; Media lagging. Week's range seen as 24,000–24,600.</div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Stock</th><th>Cap</th><th>Price</th><th>Move / Level</th><th>Why it's in the news today</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="stock-name">Axis Bank <span class="ticker">(AXISBANK)</span></td>
+          <td><span class="cap-tag cap-large">Large</span></td>
+          <td class="price">₹1,369.40</td>
+          <td class="move up">+1.0%, top Nifty50 gainer</td>
+          <td>Leading today's banking-led rally alongside HDFC Bank; ex-dividend date coming up 10 Jul.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">HDFC Bank <span class="ticker">(HDFCBANK)</span></td>
+          <td><span class="cap-tag cap-large">Large</span></td>
+          <td class="price">₹801.05<span class="price-note">latest confirmed quote is from 5 Jul</span></td>
+          <td class="move up">Among today's top gainers</td>
+          <td>Part of the private-bank pack driving today's index gains as Nifty Bank outperforms.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">Bharat Electronics <span class="ticker">(BEL)</span></td>
+          <td><span class="cap-tag cap-large">Large</span></td>
+          <td class="price">₹418.05<span class="price-note">latest confirmed quote is from 3 Jul</span></td>
+          <td class="move up">Top Nifty50 gainer today</td>
+          <td>Defense-PSU name riding today's banking/PSU-adjacent strength.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">Adani Ports <span class="ticker">(ADANIPORTS)</span></td>
+          <td><span class="cap-tag cap-large">Large</span></td>
+          <td class="price">₹1,874.20</td>
+          <td class="move down">-0.5% today, pausing after new lifetime high</td>
+          <td>Taking a breather after last week's lifetime high on the MSC/Vizhinjam Port stake deal; still up sharply since.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">Titan Company <span class="ticker">(TITAN)</span></td>
+          <td><span class="cap-tag cap-large">Large</span></td>
+          <td class="price">₹4,461.10<span class="price-note">latest confirmed quote is from 3 Jul</span></td>
+          <td class="move">Ex-dividend 9 Jul</td>
+          <td>₹15/share dividend record date 9 Jul, payment from 28 Jul.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">KEC International <span class="ticker">(KEC)</span></td>
+          <td><span class="cap-tag cap-mid">Mid</span></td>
+          <td class="price">₹515.40</td>
+          <td class="move">Flat today, up sharply last week</td>
+          <td>Still riding positive management commentary and a ₹1,754 crore order haul from last week.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">Bharat Forge <span class="ticker">(BHARATFORG)</span></td>
+          <td><span class="cap-tag cap-mid">Mid</span></td>
+          <td class="price">₹2,148.90<span class="price-note">latest confirmed quote is from 2 Jul</span></td>
+          <td class="move">Up ~67% over 1 year</td>
+          <td>Dividend record date passed 3 Jul; Q4 profit -17% YoY but revenue +17% YoY.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">Suzlon Energy <span class="ticker">(SUZLON)</span></td>
+          <td><span class="cap-tag cap-mid">Mid</span></td>
+          <td class="price">₹57.67<span class="price-note">latest confirmed quote is from 2 Jul</span></td>
+          <td class="move">Order win</td>
+          <td>Won an order to supply/install a 105 MW wind project for Sunsure Energy — commercial debut of its new S175 turbine.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">SIS Limited <span class="ticker">(SIS)</span></td>
+          <td><span class="cap-tag cap-small">Small</span></td>
+          <td class="price">₹446.00<span class="price-note">carried forward — no fresher confirmed quote found</span></td>
+          <td class="move up">+7.7% since 1 Jul</td>
+          <td>5th buyback announced, up to ₹120cr at a 10% premium; ~₹720cr returned to shareholders since 2017.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">Vedanta Oil &amp; Gas <span class="ticker">(VOGL)</span></td>
+          <td><span class="cap-tag cap-small">Small</span></td>
+          <td class="price">₹44.59–45.37<span class="price-note">latest confirmed quote is from 3 Jul</span></td>
+          <td class="move up">Up ~40% over 2 sessions (as of 3 Jul)</td>
+          <td>Momentum since its demerger from Vedanta.
+            <div class="flag">⚠ Newly listed, very limited trading history — high volatility, momentum-driven move</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- USA -->
+  <section class="section section-usa">
+    <div class="section-head"><h2>🇺🇸 USA</h2></div>
+    <div class="idx-strip">
+      <div class="idx-card">
+        <div class="name">Last completed session</div>
+        <div class="val">2 Jul close</div>
+        <div class="chg">US markets were closed 3 Jul (July 4th observed holiday, since 4 Jul fell on a Saturday) and 4–5 Jul (weekend). Markets reopen today, 6 Jul — today's session hadn't started at compile time (IST morning).</div>
+      </div>
+      <div class="idx-card">
+        <div class="name">Drivers (2 Jul)</div>
+        <div class="chg down">Broad chip-sector profit-taking for a third straight session (Marvell, Intel, AMD all down); Nvidia also softer.</div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Stock</th><th>Cap</th><th>Price</th><th>Move / Level</th><th>Why it's in the news today</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="stock-name">Marvell Technology <span class="ticker">(MRVL)</span></td>
+          <td><span class="cap-tag cap-large">Large</span></td>
+          <td class="price">$245.29<span class="price-note">one set of sources dated this "3 Jul" despite the market being closed that day — treat the date label with caution, the price itself is the most recent found</span></td>
+          <td class="move down">-10.3%</td>
+          <td>Pulling back sharply from June highs on gross-margin/pricing-cycle concerns; outgoing CFO liquidated ~half his holdings, adding sell pressure during an executive transition.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">Intel <span class="ticker">(INTC)</span></td>
+          <td><span class="cap-tag cap-large">Large</span></td>
+          <td class="price">$121.00<span class="price-note">same date-labeling caveat as MRVL above</span></td>
+          <td class="move down">-4.75%</td>
+          <td>Continuing to give back its 278%-YTD run; one analyst still raised its target from $100 to $200 on foundry-business engagement.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">AMD <span class="ticker">(AMD)</span></td>
+          <td><span class="cap-tag cap-large">Large</span></td>
+          <td class="price">$517.82</td>
+          <td class="move down">-4.3% (2 Jul close)</td>
+          <td>Third straight day giving back chip-rally gains despite Wells Fargo's raised price target on server-CPU strength.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">Nvidia <span class="ticker">(NVDA)</span></td>
+          <td><span class="cap-tag cap-large">Large</span></td>
+          <td class="price">$194.83</td>
+          <td class="move down">-1.4% (2 Jul close)</td>
+          <td>Cooling further as the broader chip-sector pullback extends to a third session.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">AeroVironment <span class="ticker">(AVAV)</span></td>
+          <td><span class="cap-tag cap-mid">Mid</span></td>
+          <td class="price">$190.89</td>
+          <td class="move up">+35% over 3 sessions</td>
+          <td>Still running on its $500M U.S. Army counter-drone contract (Titan RF, through June 2029) plus last week's 133%-YoY revenue beat.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">CRISPR Therapeutics <span class="ticker">(CRSP)</span></td>
+          <td><span class="cap-tag cap-mid">Mid</span></td>
+          <td class="price">~$55.11<span class="price-note">quotes ranged $53.86–$55.11 across sources</span></td>
+          <td class="move up">+11.3% on the back of recent news</td>
+          <td>Added to Russell growth indexes and won expanded FDA approval for Casgevy in younger patients.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">Valmont Industries <span class="ticker">(VMI)</span></td>
+          <td><span class="cap-tag cap-mid">Mid</span></td>
+          <td class="price">$556.67</td>
+          <td class="move down">Off its 25 Jun all-time high of $585.71</td>
+          <td>Giving back some of its 12-month rally; infrastructure/ag-equipment exposure still intact.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">Cirrus Logic <span class="ticker">(CRUS)</span></td>
+          <td><span class="cap-tag cap-mid">Mid</span></td>
+          <td class="price">~$146.44<span class="price-note">quotes still inconsistent across sources</span></td>
+          <td class="move down">Down from record revenue high</td>
+          <td>FY26 revenue hit a record ~$2B, but the stock has cooled alongside the broader chip pullback.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">Magnite <span class="ticker">(MGNI)</span></td>
+          <td><span class="cap-tag cap-small">Small</span></td>
+          <td class="price">$20.44<span class="price-note">carried forward from 2 Jul — today's search returned an unrelated, much older ($16.25) quote</span></td>
+          <td class="move up">+6.8% since 1 Jul</td>
+          <td>Digital-ad small-cap holding onto its early-July recovery.</td>
+        </tr>
+        <tr>
+          <td class="stock-name">Serve Robotics <span class="ticker">(SERV)</span></td>
+          <td><span class="cap-tag cap-small">Small</span></td>
+          <td class="price">$6.31</td>
+          <td class="move down">-3.4% (2 Jul close)</td>
+          <td>Delivery-robotics small-cap still giving back gains; early-stage, high-volatility name.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer class="foot">
+    Manual catch-up run — the 8:02/8:17 AM automated runs did not fire for Mon 6 Jul (no lastRunAt logged, scheduler had already advanced to 7 Jul). Built from a same-day/most-recent web news scan; several rows carry explicit "latest confirmed quote" or "carried forward" flags where fresher data wasn't found. US section reflects 2 Jul, the last completed session (3 Jul was a market holiday, 4–5 Jul was the weekend); today's US session (6 Jul) hadn't opened at compile time.
+    <br><br>
+    Sources: Business Standard, 5paisa, Liquide, Groww, Screener.in, Yahoo Finance, TradingKey, FX Leaders, Sunday Guardian Live, HDFC Sky.
+  </footer>
+
+</div>
+</body>
+</html>

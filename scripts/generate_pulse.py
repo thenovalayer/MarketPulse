@@ -1,0 +1,267 @@
+#!/usr/bin/env python3
+"""
+Generates both Market Pulse pages:
+  - index.html            (Daily Market Pulse: India + USA, 10 news-driven picks each)
+  - tracker/index.html    (14-day forward tracker for the fixed 20-stock cohort)
+
+Run by GitHub Actions on a cron schedule (see .github/workflows/daily-pulse.yml),
+but you can also run it locally:
+
+    export GEMINI_API_KEY=AIza...
+    pip install -r requirements.txt
+    python scripts/generate_pulse.py
+
+NOTE ON THE GEMINI API CALL: this script uses Gemini's built-in Google Search
+grounding tool (executed on Google's side, results folded into the same
+response) so a single generate_content() call can research and answer in one
+round trip. Get a free API key (no credit card required) at
+https://aistudio.google.com/apikey -- the free tier comfortably covers this
+script's ~2 calls/day. This is the part most likely to need a small
+adjustment if the SDK response shape has changed since this was written --
+Claude (in the Cowork chat that produced this repo) could not test this
+end-to-end against a live API key, so verify the first few runs by hand.
+"""
+
+import json
+import os
+import re
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+from google import genai
+from google.genai import types
+from jinja2 import Environment, FileSystemLoader
+
+ROOT = Path(__file__).resolve().parent.parent
+TEMPLATES = ROOT / "templates"
+DATA_DIR = ROOT / "data"
+COHORT_PATH = DATA_DIR / "cohort.json"
+DAILY_OUT = ROOT / "index.html"
+TRACKER_OUT = ROOT / "tracker" / "index.html"
+
+MODEL = "gemini-2.5-flash"
+
+client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+
+
+def now_ist_string():
+    """Best-effort IST timestamp for display. GitHub Actions runners are UTC,
+    so we hand-offset by +5:30 rather than relying on system timezone data."""
+    from datetime import timedelta
+
+    utc_now = datetime.now(timezone.utc)
+    ist_now = utc_now + timedelta(hours=5, minutes=30)
+    date_line = ist_now.strftime("%a, %-d %b %Y") + " · " + ist_now.strftime("%-I:%M %p") + " IST (UTC+5:30)"
+    compact = ist_now.strftime("%Y-%m-%d_%H%M") + "IST"
+    return date_line, compact, ist_now
+
+
+def extract_json(text: str) -> dict:
+    """Pull the first {...} JSON object out of a text blob and parse it.
+    Claude is instructed to return ONLY JSON, but this is a defensive
+    fallback in case any stray prose sneaks in around it."""
+    match = re.search(r"\{.*\}", text, re.DOTALL)
+    if not match:
+        raise ValueError(f"No JSON object found in model output:\n{text[:2000]}")
+    return json.loads(match.group(0))
+
+
+def call_gemini_with_search(prompt: str, max_tokens: int = 8000) -> dict:
+    response = client.models.generate_content(
+        model=MODEL,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            tools=[types.Tool(google_search=types.GoogleSearch())],
+            max_output_tokens=max_tokens,
+        ),
+    )
+    full_text = response.text or ""
+    return extract_json(full_text)
+
+
+# ---------------------------------------------------------------------------
+# STEP 1: Daily Market Pulse (fresh picks every run)
+# ---------------------------------------------------------------------------
+
+DAILY_PROMPT = """You are researching today's stock market news to build a "Daily Market Pulse" briefing, same format every day. Use web search to find CURRENT, same-day information -- do not use stale training data.
+
+Research and return ONLY a JSON object (no prose before or after) with this exact shape:
+
+{
+  "india": {
+    "index_cards": [
+      {"name": "Sensex", "val": "77,022.83", "chg": "+544.16 (+0.71%)", "cls": "up", "border_color": "#059669"},
+      {"name": "Nifty 50", "val": "24,002.65", "chg": "+136.90 (+0.57%)", "cls": "up", "border_color": "#059669"},
+      {"name": "Drivers", "val": "", "chg": "one or two sentence summary of what's driving the market today", "cls": "", "border_color": "#e8a317"}
+    ],
+    "stocks": [
+      {"name": "Company Name", "ticker": "NSECODE", "cap": "Large", "price": "₹1,234.50", "price_note": "", "move": "+2.5%", "move_cls": "up", "why": "one or two sentences on the specific catalyst", "flag": ""}
+    ]
+  },
+  "usa": {
+    "index_cards": [ ... same shape, for Dow/S&P/Nasdaq and a Drivers card ... ],
+    "stocks": [ ... same shape as india.stocks ... ]
+  },
+  "sources": ["domain1.com", "domain2.com", "..."],
+  "footer_note": "one sentence noting this is a same-day news scan, not investment advice, built from web search"
+}
+
+Rules:
+- Exactly 10 stocks in india.stocks and 10 in usa.stocks, cap field one of "Large"/"Mid"/"Small", spread across all three as evenly as the actual news supports (do not force false balance).
+- USA section: if US markets are closed (weekend/holiday), use the most recently completed session and say so in usa.index_cards drivers text.
+- move_cls must be "up", "down", or "" (empty for non-directional items like "order win" or "buyback").
+- "why" must cite a specific, concrete catalyst (earnings, order win, dividend, brokerage note, M&A, etc.) -- never vague filler like "sector is up".
+- If a stock's price is stretched on valuation (very high P/E, huge run already priced in), set "flag" to a short risk note; otherwise leave flag as "".
+- If a price is uncertain or conflicting across sources, put the caveat in "price_note" (e.g. "quotes varied $145-$163") rather than presenting false precision.
+- Never fabricate a stock, price, or catalyst not actually returned by search.
+"""
+
+
+def build_daily_pulse(env: Environment, date_line: str, compact_ts: str):
+    data = call_gemini_with_search(DAILY_PROMPT)
+    template = env.get_template("daily_pulse.html.j2")
+    html = template.render(
+        date_line=date_line,
+        compact_timestamp=compact_ts,
+        india=data["india"],
+        usa=data["usa"],
+        sources=data.get("sources", []),
+        footer_note=data.get(
+            "footer_note",
+            "Same-day web news scan, not investment advice, not from a licensed research source.",
+        ),
+    )
+    DAILY_OUT.write_text(html, encoding="utf-8")
+    print(f"Wrote {DAILY_OUT}")
+
+
+# ---------------------------------------------------------------------------
+# STEP 2: Forward tracker (fixed cohort, re-priced each run)
+# ---------------------------------------------------------------------------
+
+REPRICE_PROMPT_TEMPLATE = """Use web search to find the CURRENT share price for each of these {n} stocks. Return ONLY a JSON object (no prose) mapping each ticker to its current price as a plain number (no currency symbols, no commas) plus an optional one-line note if the quote is stale/uncertain/conflicting across sources:
+
+{{
+  "TICKER1": {{"price": 1234.5, "note": ""}},
+  "TICKER2": {{"price": 56.7, "note": "quotes ranged $54-$58"}}
+}}
+
+Stocks to look up (name / ticker / market):
+{stock_list}
+
+Do not fabricate a price -- if you truly cannot find one, omit that ticker from the JSON entirely rather than guessing.
+"""
+
+
+def fmt_price(value: float, currency: str) -> str:
+    symbol = "₹" if currency == "INR" else "$"
+    return f"{symbol}{value:,.2f}"
+
+
+def build_tracker(env: Environment, date_line: str, compact_ts: str, ist_now: datetime):
+    cohort_data = json.loads(COHORT_PATH.read_text(encoding="utf-8"))
+    entry_date = datetime.strptime(cohort_data["entryDate"], "%Y-%m-%d")
+    window_days = cohort_data["windowDays"]
+    day_number = (ist_now.replace(tzinfo=None) - entry_date).days
+    complete = day_number >= window_days
+    day_label = f"Day {min(day_number, window_days)} of {window_days}"
+
+    stock_list_lines = [
+        f"- {s['name']} / {s['ticker']} / {s['market']}" for s in cohort_data["cohort"]
+    ]
+    prompt = REPRICE_PROMPT_TEMPLATE.format(
+        n=len(cohort_data["cohort"]), stock_list="\n".join(stock_list_lines)
+    )
+    prices = call_gemini_with_search(prompt, max_tokens=4000)
+
+    india_rows, usa_rows = [], []
+    changes = []
+    cap_changes = {"Large": [], "Mid": [], "Small": []}
+
+    for s in cohort_data["cohort"]:
+        ticker = s["ticker"]
+        current_price = s.get("lastPrice", s["entryPrice"])
+        current_note = ""
+        if ticker in prices:
+            current_price = prices[ticker]["price"]
+            current_note = prices[ticker].get("note", "")
+            s["lastPrice"] = current_price  # persist for next run's fallback
+        else:
+            current_note = "no fresh quote found this run, carried forward"
+
+        entry_price = s["entryPrice"]
+        change_pct = (current_price - entry_price) / entry_price * 100
+        changes.append(change_pct)
+        cap_changes[s["cap"]].append(change_pct)
+        change_cls = "up" if change_pct > 0 else ("down" if change_pct < 0 else "flat")
+
+        row = {
+            "name": s["name"],
+            "ticker": ticker,
+            "cap": s["cap"],
+            "entry_price": fmt_price(entry_price, s["currency"]),
+            "entry_note": s.get("note", ""),
+            "current_price": fmt_price(current_price, s["currency"]),
+            "current_note": current_note,
+            "change_pct": f"{change_pct:+.1f}%",
+            "change_cls": change_cls,
+            "why": s["why"],
+        }
+        (india_rows if s["market"] == "India" else usa_rows).append(row)
+
+    up = sum(1 for c in changes if c > 0)
+    down = sum(1 for c in changes if c < 0)
+    flat = sum(1 for c in changes if c == 0)
+    avg = sum(changes) / len(changes) if changes else 0.0
+
+    footer_bits = [
+        f"Day {min(day_number, window_days)} read: {up} up, {down} down, {flat} flat, average {avg:+.1f}%."
+    ]
+    for cap in ("Large", "Mid", "Small"):
+        vals = cap_changes[cap]
+        if vals:
+            footer_bits.append(f"{cap} cap avg {sum(vals)/len(vals):+.1f}%.")
+    if complete:
+        footer_bits.append("The 14-day window is complete -- treat this as a finished experiment, not a live signal.")
+    footer_note = " ".join(footer_bits)
+
+    template = env.get_template("tracker.html.j2")
+    html = template.render(
+        day_label=day_label,
+        checked_line=date_line,
+        complete=complete,
+        stats={"up": up, "down": down, "flat": flat, "avg": f"{avg:+.1f}%"},
+        india_rows=india_rows,
+        usa_rows=usa_rows,
+        footer_note=footer_note,
+        compact_timestamp=compact_ts,
+    )
+    TRACKER_OUT.parent.mkdir(parents=True, exist_ok=True)
+    TRACKER_OUT.write_text(html, encoding="utf-8")
+    print(f"Wrote {TRACKER_OUT}")
+
+    cohort_data["lastChecked"] = ist_now.strftime("%Y-%m-%d")
+    COHORT_PATH.write_text(json.dumps(cohort_data, indent=2), encoding="utf-8")
+    print(f"Updated {COHORT_PATH}")
+
+
+def main():
+    date_line, compact_ts, ist_now = now_ist_string()
+    env = Environment(loader=FileSystemLoader(str(TEMPLATES)))
+
+    try:
+        build_daily_pulse(env, date_line, compact_ts)
+    except Exception as exc:  # noqa: BLE001
+        print(f"ERROR building daily pulse: {exc}", file=sys.stderr)
+        raise
+
+    try:
+        build_tracker(env, date_line, compact_ts, ist_now)
+    except Exception as exc:  # noqa: BLE001
+        print(f"ERROR building tracker: {exc}", file=sys.stderr)
+        raise
+
+
+if __name__ == "__main__":
+    main()

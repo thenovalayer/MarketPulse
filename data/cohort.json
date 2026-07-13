@@ -1,0 +1,27 @@
+{
+  "entryDate": "2026-07-01",
+  "windowDays": 14,
+  "lastChecked": "2026-07-06",
+  "cohort": [
+    {"market":"India","name":"Eternal (Zomato)","ticker":"ETERNAL","cap":"Large","entryPrice":264.60,"currency":"INR","lastPrice":281.65,"why":"Top Nifty gainer on sectoral tailwinds and positive earnings expectations."},
+    {"market":"India","name":"Adani Ports","ticker":"ADANIPORTS","cap":"Large","entryPrice":1810.20,"currency":"INR","lastPrice":1874.20,"why":"Among the day's top Nifty50 gainers; later hit a lifetime high on the MSC/Vizhinjam Port deal."},
+    {"market":"India","name":"Titan Company","ticker":"TITAN","cap":"Large","entryPrice":4404.00,"currency":"INR","lastPrice":4461.10,"why":"Record date 9 Jul for a ₹15/share dividend; payment from 28 Jul."},
+    {"market":"India","name":"Mahindra & Mahindra","ticker":"M&M","cap":"Large","entryPrice":3068.80,"currency":"INR","lastPrice":3121.30,"why":"Auto pack extending gains for a second straight session."},
+    {"market":"India","name":"Coforge","ticker":"COFORGE","cap":"Large","entryPrice":1486.00,"currency":"INR","lastPrice":1464.00,"why":"Biggest large-cap loser on profit booking on 1 Jul — testing whether it's a dip or a real breakdown."},
+    {"market":"India","name":"Bharat Forge","ticker":"BHARATFORG","cap":"Mid","entryPrice":2107.00,"currency":"INR","lastPrice":2148.90,"why":"Dividend record date 3 Jul; Q4 profit -17% YoY but revenue +17% YoY."},
+    {"market":"India","name":"KEC International","ticker":"KEC","cap":"Mid","entryPrice":541.00,"currency":"INR","lastPrice":515.40,"why":"Won ₹1,754 crore of new orders across T&D, towers, cables.","note":"Entry price was itself a stale pre-1-Jul quote — treat the day-over-day change as unreliable."},
+    {"market":"India","name":"HFCL","ticker":"HFCL","cap":"Mid","entryPrice":213.69,"currency":"INR","lastPrice":212.23,"why":"₹21,206cr order book but ~103–127x P/E — testing whether valuation catches up with it."},
+    {"market":"India","name":"VA Tech Wabag","ticker":"WABAG","cap":"Small","entryPrice":2110.80,"currency":"INR","lastPrice":2080.90,"why":"Opened higher after securing a new international order.","note":"Entry price was itself a stale pre-1-Jul quote — treat the day-over-day change as unreliable."},
+    {"market":"India","name":"SIS Limited","ticker":"SIS","cap":"Small","entryPrice":414.25,"currency":"INR","lastPrice":446.00,"why":"5th buyback announced, up to ₹120cr at a 10% premium."},
+    {"market":"USA","name":"Nvidia","ticker":"NVDA","cap":"Large","entryPrice":200.09,"currency":"USD","lastPrice":194.83,"why":"Leading the AI/chip rally that closed out H1 2026; now cooling in a broad chip-sector pullback."},
+    {"market":"USA","name":"AMD","ticker":"AMD","cap":"Large","entryPrice":580.91,"currency":"USD","lastPrice":517.82,"why":"Among the biggest chip movers as the AI trade broadens, then gave much of it back."},
+    {"market":"USA","name":"Intel","ticker":"INTC","cap":"Large","entryPrice":139.63,"currency":"USD","lastPrice":121.00,"why":"Part of the ~$2T combined market-cap chip surge in Q2; pulled back hard on valuation-bubble warnings.","note":"Entry price was the day's intraday high, not a traded price — treat the day-over-day change as unreliable."},
+    {"market":"USA","name":"Marvell Technology","ticker":"MRVL","cap":"Large","entryPrice":296.30,"currency":"USD","lastPrice":245.29,"why":"Real round-trip: spiked on AI data-center demand, then reversed hard on gross-margin/pricing-cycle concerns and a CFO share sale."},
+    {"market":"USA","name":"CRISPR Therapeutics","ticker":"CRSP","cap":"Mid","entryPrice":53.86,"currency":"USD","lastPrice":55.11,"why":"Best-in-class biotech; added to Russell growth indexes and won expanded FDA approval for Casgevy in younger patients."},
+    {"market":"USA","name":"Cirrus Logic","ticker":"CRUS","cap":"Mid","entryPrice":154.00,"currency":"USD","lastPrice":146.44,"why":"FY26 record revenue ~$2B; debt-free balance sheet.","note":"Quotes have been inconsistent across sources for this ticker since entry."},
+    {"market":"USA","name":"Valmont Industries","ticker":"VMI","cap":"Mid","entryPrice":569.88,"currency":"USD","lastPrice":556.67,"why":"+67% 12-month run into mid-2026; off its 25 Jun all-time high of $585.71."},
+    {"market":"USA","name":"AeroVironment","ticker":"AVAV","cap":"Small","entryPrice":165.07,"currency":"USD","lastPrice":190.89,"why":"+30% 1-day pop on blockbuster earnings, then a $500M DoD counter-drone contract on top of it."},
+    {"market":"USA","name":"Magnite","ticker":"MGNI","cap":"Small","entryPrice":19.14,"currency":"USD","lastPrice":20.44,"why":"Digital-ad small-cap flagged with positive momentum."},
+    {"market":"USA","name":"Serve Robotics","ticker":"SERV","cap":"Small","entryPrice":6.98,"currency":"USD","lastPrice":6.31,"why":"Delivery-robotics small-cap, early-stage and high-volatility."}
+  ]
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Market-Pulse-Tracker_{{ compact_timestamp }}</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: linear-gradient(180deg, #eef2fb 0%, #f5f7fa 220px);
+    color: #16213e;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px 60px; }
+  header.top {
+    background: linear-gradient(120deg, #0b1e4d 0%, #6a1d9c 55%, #0d8f8a 100%);
+    border-radius: 0 0 14px 14px; padding: 22px 24px; margin: 0 -20px 22px; color: #fff;
+    box-shadow: 0 6px 18px rgba(11,30,77,0.18);
+  }
+  header.top h1 { font-size: 22px; margin: 0 0 4px; color: #fff; }
+  header.top .sub { font-size: 13px; color: #dfe6ff; }
+  .disclaimer {
+    background: #fff9ec; border-left: 4px solid #e8a317; border-radius: 6px;
+    padding: 12px 16px; font-size: 12.5px; line-height: 1.5; color: #7a4e00; margin-bottom: 22px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .stats-strip { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
+  .stat-card {
+    background: #fff; border-left: 4px solid #1d4ed8; border-radius: 8px;
+    padding: 11px 16px; min-width: 130px; box-shadow: 0 2px 6px rgba(11,30,77,0.08);
+  }
+  .stat-card .name { font-size: 11px; color: #5a6b82; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+  .stat-card .val { font-size: 18px; font-weight: 700; color: #0b1e4d; margin-top: 3px; }
+  .section { margin-bottom: 34px; }
+  .section-head {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+    padding-bottom: 8px; border-bottom: 2px solid #1d4ed8;
+  }
+  .section-head h2 { font-size: 17px; margin: 0; color: #0b1e4d; font-weight: 700; }
+  table { width: 100%; table-layout: fixed; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(11,30,77,0.08); }
+  thead th {
+    background: linear-gradient(120deg, #0b1e4d, #1d3fa0); color: #fff; text-align: left; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.03em; padding: 10px 10px;
+  }
+  thead th:nth-child(1) { width: 18%; } thead th:nth-child(2) { width: 8%; }
+  thead th:nth-child(3) { width: 12%; } thead th:nth-child(4) { width: 12%; }
+  thead th:nth-child(5) { width: 11%; } thead th:nth-child(6) { width: 39%; }
+  tbody td {
+    padding: 10px; font-size: 12.5px; border-bottom: 1px solid #edf1f5; vertical-align: top;
+    overflow-wrap: anywhere; word-break: break-word; white-space: normal; overflow: hidden;
+  }
+  tbody tr:nth-child(even) { background: #f4f8ff; }
+  .stock-name { font-weight: 700; color: #0b1e4d; }
+  .ticker { font-weight: 500; color: #6b7d99; font-size: 11.5px; }
+  .cap-tag {
+    display: inline-block; font-size: 9px; font-weight: 700; padding: 2px 6px;
+    border-radius: 8px; text-transform: uppercase; letter-spacing: 0.01em; color: #fff; white-space: nowrap; line-height: 1.5;
+  }
+  .cap-large { background: #1d4ed8; } .cap-mid { background: #0d9488; } .cap-small { background: #e8720c; }
+  .price { font-weight: 700; color: #0b1e4d; }
+  .price-note { display: block; font-weight: 400; color: #8a97ab; font-size: 10px; margin-top: 2px; }
+  .up { color: #059669; font-weight: 700; } .down { color: #dc2626; font-weight: 700; } .flat { color: #5a6b82; font-weight: 700; }
+  footer.foot { margin-top: 30px; padding-top: 14px; border-top: 2px solid #e2e8f0; font-size: 11.5px; color: #5a6b82; line-height: 1.6; }
+  footer.foot a { color: #1d4ed8; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <h1>Market Pulse — Forward Tracker</h1>
+    <div class="sub">{{ day_label }} · Cohort locked Wed, 1 Jul 2026 · Checked {{ checked_line }}{% if complete %} · WINDOW COMPLETE{% endif %}</div>
+  </header>
+
+  <div class="disclaimer">
+    <strong>This is a validation experiment, not a live product.</strong> These are the exact 20 names from the 1 Jul 2026 Daily Market Pulse, frozen on the day they were picked. Not investment advice — no conclusions until the full 14-day window closes. Generated automatically by a GitHub Actions workflow.
+  </div>
+
+  <div class="stats-strip">
+    <div class="stat-card" style="border-left-color:#5a6b82"><div class="name">Day</div><div class="val">{{ day_label }}</div></div>
+    <div class="stat-card" style="border-left-color:#059669"><div class="name">Up since entry</div><div class="val">{{ stats.up }}</div></div>
+    <div class="stat-card" style="border-left-color:#dc2626"><div class="name">Down since entry</div><div class="val">{{ stats.down }}</div></div>
+    <div class="stat-card" style="border-left-color:#5a6b82"><div class="name">Flat</div><div class="val">{{ stats.flat }}</div></div>
+    <div class="stat-card" style="border-left-color:#1d4ed8"><div class="name">Avg change</div><div class="val">{{ stats.avg }}</div></div>
+  </div>
+
+  <section class="section">
+    <div class="section-head"><h2>🇮🇳 India cohort</h2></div>
+    <table>
+      <thead><tr><th>Stock</th><th>Cap</th><th>Entry (1 Jul)</th><th>Current</th><th>Change</th><th>Why it was picked</th></tr></thead>
+      <tbody>
+        {% for r in india_rows %}
+        <tr>
+          <td class="stock-name">{{ r.name }} <span class="ticker">({{ r.ticker }})</span></td>
+          <td><span class="cap-tag cap-{{ r.cap|lower }}">{{ r.cap }}</span></td>
+          <td class="price">{{ r.entry_price }}{% if r.entry_note %}<span class="price-note">{{ r.entry_note }}</span>{% endif %}</td>
+          <td class="price">{{ r.current_price }}{% if r.current_note %}<span class="price-note">{{ r.current_note }}</span>{% endif %}</td>
+          <td class="{{ r.change_cls }}">{{ r.change_pct }}</td>
+          <td>{{ r.why }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>🇺🇸 USA cohort</h2></div>
+    <table>
+      <thead><tr><th>Stock</th><th>Cap</th><th>Entry (1 Jul)</th><th>Current</th><th>Change</th><th>Why it was picked</th></tr></thead>
+      <tbody>
+        {% for r in usa_rows %}
+        <tr>
+          <td class="stock-name">{{ r.name }} <span class="ticker">({{ r.ticker }})</span></td>
+          <td><span class="cap-tag cap-{{ r.cap|lower }}">{{ r.cap }}</span></td>
+          <td class="price">{{ r.entry_price }}{% if r.entry_note %}<span class="price-note">{{ r.entry_note }}</span>{% endif %}</td>
+          <td class="price">{{ r.current_price }}{% if r.current_note %}<span class="price-note">{{ r.current_note }}</span>{% endif %}</td>
+          <td class="{{ r.change_cls }}">{{ r.change_pct }}</td>
+          <td>{{ r.why }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <footer class="foot">
+    {{ footer_note }}
+    <br><br>
+    <a href="../">← Back to today's Daily Market Pulse</a>
+  </footer>
+
+</div>
+</body>
+</html>

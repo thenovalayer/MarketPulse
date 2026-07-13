@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Market-Pulse-Tracker_2026-07-06</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: linear-gradient(180deg, #eef2fb 0%, #f5f7fa 220px);
+    color: #16213e;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px 60px; }
+  header.top {
+    background: linear-gradient(120deg, #0b1e4d 0%, #6a1d9c 55%, #0d8f8a 100%);
+    border-radius: 0 0 14px 14px; padding: 22px 24px; margin: 0 -20px 22px; color: #fff;
+    box-shadow: 0 6px 18px rgba(11,30,77,0.18);
+  }
+  header.top h1 { font-size: 22px; margin: 0 0 4px; color: #fff; }
+  header.top .sub { font-size: 13px; color: #dfe6ff; }
+  .disclaimer {
+    background: #fff9ec; border-left: 4px solid #e8a317; border-radius: 6px;
+    padding: 12px 16px; font-size: 12.5px; line-height: 1.5; color: #7a4e00; margin-bottom: 22px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .stats-strip { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
+  .stat-card {
+    background: #fff; border-left: 4px solid #1d4ed8; border-radius: 8px;
+    padding: 11px 16px; min-width: 130px; box-shadow: 0 2px 6px rgba(11,30,77,0.08);
+  }
+  .stat-card .name { font-size: 11px; color: #5a6b82; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+  .stat-card .val { font-size: 18px; font-weight: 700; color: #0b1e4d; margin-top: 3px; }
+  .section { margin-bottom: 34px; }
+  .section-head {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+    padding-bottom: 8px; border-bottom: 2px solid #1d4ed8;
+  }
+  .section-head h2 { font-size: 17px; margin: 0; color: #0b1e4d; font-weight: 700; }
+  /* Same no-overlap invariant as daily-market-pulse: fixed layout + wrapping cells, no nowrap except the Cap pill. */
+  table { width: 100%; table-layout: fixed; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(11,30,77,0.08); }
+  thead th {
+    background: linear-gradient(120deg, #0b1e4d, #1d3fa0); color: #fff; text-align: left; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.03em; padding: 10px 10px;
+  }
+  thead th:nth-child(1) { width: 18%; }
+  thead th:nth-child(2) { width: 8%; }
+  thead th:nth-child(3) { width: 12%; }
+  thead th:nth-child(4) { width: 12%; }
+  thead th:nth-child(5) { width: 11%; }
+  thead th:nth-child(6) { width: 39%; }
+  tbody td {
+    padding: 10px; font-size: 12.5px; border-bottom: 1px solid #edf1f5; vertical-align: top;
+    overflow-wrap: anywhere; word-break: break-word; white-space: normal; overflow: hidden;
+  }
+  tbody tr:nth-child(even) { background: #f4f8ff; }
+  .stock-name { font-weight: 700; color: #0b1e4d; }
+  .ticker { font-weight: 500; color: #6b7d99; font-size: 11.5px; }
+  .cap-tag {
+    display: inline-block; font-size: 9px; font-weight: 700; padding: 2px 6px;
+    border-radius: 8px; text-transform: uppercase; letter-spacing: 0.01em; color: #fff; white-space: nowrap; line-height: 1.5;
+  }
+  .cap-large { background: #1d4ed8; } .cap-mid { background: #0d9488; } .cap-small { background: #e8720c; }
+  .price { font-weight: 700; color: #0b1e4d; }
+  .price-note { display: block; font-weight: 400; color: #8a97ab; font-size: 10px; margin-top: 2px; }
+  .up { color: #059669; font-weight: 700; } .down { color: #dc2626; font-weight: 700; } .flat { color: #5a6b82; font-weight: 700; }
+  footer.foot {
+    margin-top: 30px; padding-top: 14px; border-top: 2px solid #e2e8f0;
+    font-size: 11.5px; color: #5a6b82; line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <h1>Market Pulse — Forward Tracker</h1>
+    <div class="sub">Day 5 of 14 · Cohort locked Wed, 1 Jul 2026 · 4:52 PM IST (UTC+5:30) · Checked Mon, 6 Jul 2026, 10:20 AM IST</div>
+  </header>
+
+  <div class="disclaimer">
+    <strong>This is a validation experiment, not a live product.</strong> These are the exact 20 names from the 1 Jul 2026 Daily Market Pulse, frozen on the day they were picked. The question being tested: does a stock being "in the news" for a catalyst actually predict where its price goes over the next two weeks — not investment advice, no conclusions until the full 14-day window closes. Ongoing data-quality flags from Day 1 (KEC, WABAG, INTC entry prices) still apply. New this check: US markets were closed 3 Jul (July 4th holiday) and the weekend, so the US side reflects the 2 Jul close, not a fresh same-day price.
+  </div>
+
+  <div class="stats-strip">
+    <div class="stat-card" style="border-left-color:#5a6b82"><div class="name">Day</div><div class="val">5 / 14</div></div>
+    <div class="stat-card" style="border-left-color:#059669"><div class="name">Up since entry</div><div class="val">9</div></div>
+    <div class="stat-card" style="border-left-color:#dc2626"><div class="name">Down since entry</div><div class="val">11</div></div>
+    <div class="stat-card" style="border-left-color:#5a6b82"><div class="name">Flat</div><div class="val">0</div></div>
+    <div class="stat-card" style="border-left-color:#1d4ed8"><div class="name">Avg change</div><div class="val">-1.1%</div></div>
+  </div>
+
+  <section class="section">
+    <div class="section-head"><h2>🇮🇳 India cohort</h2></div>
+    <table>
+      <thead><tr><th>Stock</th><th>Cap</th><th>Entry (1 Jul)</th><th>Current</th><th>Change</th><th>Why it was picked</th></tr></thead>
+      <tbody>
+        <tr><td class="stock-name">SIS Limited <span class="ticker">(SIS)</span></td><td><span class="cap-tag cap-small">Small</span></td><td class="price">₹414.25</td><td class="price">₹446.00<span class="price-note">carried forward, no fresher confirmed quote</span></td><td class="up">+7.7%</td><td>5th buyback announced, up to ₹120cr at a 10% premium.</td></tr>
+        <tr><td class="stock-name">Eternal (Zomato) <span class="ticker">(ETERNAL)</span></td><td><span class="cap-tag cap-large">Large</span></td><td class="price">₹264.60</td><td class="price">₹281.65</td><td class="up">+6.4%</td><td>Top Nifty gainer on sectoral tailwinds and positive earnings expectations.</td></tr>
+        <tr><td class="stock-name">Adani Ports <span class="ticker">(ADANIPORTS)</span></td><td><span class="cap-tag cap-large">Large</span></td><td class="price">₹1,810.20</td><td class="price">₹1,874.20</td><td class="up">+3.5%</td><td>Among the day's top Nifty50 gainers; later hit a lifetime high on the MSC/Vizhinjam Port deal.</td></tr>
+        <tr><td class="stock-name">Bharat Forge <span class="ticker">(BHARATFORG)</span></td><td><span class="cap-tag cap-mid">Mid</span></td><td class="price">₹2,107.00</td><td class="price">₹2,148.90<span class="price-note">latest confirmed quote is from 2 Jul</span></td><td class="up">+2.0%</td><td>Dividend record date 3 Jul; Q4 profit -17% YoY but revenue +17% YoY.</td></tr>
+        <tr><td class="stock-name">Mahindra &amp; Mahindra <span class="ticker">(M&amp;M)</span></td><td><span class="cap-tag cap-large">Large</span></td><td class="price">₹3,068.80</td><td class="price">₹3,121.30</td><td class="up">+1.7%</td><td>Auto pack extending gains for a second straight session.</td></tr>
+        <tr><td class="stock-name">Titan Company <span class="ticker">(TITAN)</span></td><td><span class="cap-tag cap-large">Large</span></td><td class="price">₹4,404.00</td><td class="price">₹4,461.10<span class="price-note">latest confirmed quote is from 3 Jul</span></td><td class="up">+1.3%</td><td>Record date 9 Jul for a ₹15/share dividend; payment from 28 Jul.</td></tr>
+        <tr><td class="stock-name">HFCL <span class="ticker">(HFCL)</span></td><td><span class="cap-tag cap-mid">Mid</span></td><td class="price">₹213.69</td><td class="price">₹212.23<span class="price-note">latest confirmed quote is from 1 Jul</span></td><td class="down">-0.7%</td><td>₹21,206cr order book but ~103–127x P/E — testing whether valuation catches up with it.</td></tr>
+        <tr><td class="stock-name">VA Tech Wabag <span class="ticker">(WABAG)</span></td><td><span class="cap-tag cap-small">Small</span></td><td class="price">₹2,110.80<span class="price-note">this entry was itself a stale 25 Jun quote</span></td><td class="price">₹2,080.90</td><td class="down">-1.4%<span class="price-note">unreliable — see entry-price flag</span></td><td>Opened higher after securing a new international order.</td></tr>
+        <tr><td class="stock-name">Coforge <span class="ticker">(COFORGE)</span></td><td><span class="cap-tag cap-large">Large</span></td><td class="price">₹1,486.00</td><td class="price">₹1,464.00</td><td class="down">-1.5%</td><td>Biggest large-cap loser on profit booking — testing whether it's a dip or a real breakdown.</td></tr>
+        <tr><td class="stock-name">KEC International <span class="ticker">(KEC)</span></td><td><span class="cap-tag cap-mid">Mid</span></td><td class="price">₹541.00<span class="price-note">this entry was itself a stale 23 Jun quote</span></td><td class="price">₹515.40</td><td class="down">-4.7%<span class="price-note">unreliable — see entry-price flag</span></td><td>Won ₹1,754 crore of new orders across T&amp;D, towers, cables.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>🇺🇸 USA cohort</h2></div>
+    <table>
+      <thead><tr><th>Stock</th><th>Cap</th><th>Entry (1 Jul)</th><th>Current</th><th>Change</th><th>Why it was picked</th></tr></thead>
+      <tbody>
+        <tr><td class="stock-name">AeroVironment <span class="ticker">(AVAV)</span></td><td><span class="cap-tag cap-small">Small</span></td><td class="price">$165.07</td><td class="price">$190.89</td><td class="up">+15.6%</td><td>+30% 1-day pop on blockbuster earnings, then a $500M DoD counter-drone contract on top of it — a real catalyst-to-price example.</td></tr>
+        <tr><td class="stock-name">Magnite <span class="ticker">(MGNI)</span></td><td><span class="cap-tag cap-small">Small</span></td><td class="price">$19.14</td><td class="price">$20.44<span class="price-note">carried forward from 2 Jul, today's search returned an unrelated stale quote</span></td><td class="up">+6.8%</td><td>Digital-ad small-cap flagged with positive momentum.</td></tr>
+        <tr><td class="stock-name">CRISPR Therapeutics <span class="ticker">(CRSP)</span></td><td><span class="cap-tag cap-mid">Mid</span></td><td class="price">$53.86</td><td class="price">$55.11<span class="price-note">quotes ranged $53.86-$55.11</span></td><td class="up">+2.3%</td><td>Best-in-class biotech; added to Russell growth indexes and won expanded FDA approval for Casgevy in younger patients.</td></tr>
+        <tr><td class="stock-name">Nvidia <span class="ticker">(NVDA)</span></td><td><span class="cap-tag cap-large">Large</span></td><td class="price">$200.09</td><td class="price">$194.83<span class="price-note">2 Jul close</span></td><td class="down">-2.8%</td><td>Leading the AI/chip rally that closed out H1 2026; now cooling in a broad chip-sector pullback.</td></tr>
+        <tr><td class="stock-name">Valmont Industries <span class="ticker">(VMI)</span></td><td><span class="cap-tag cap-mid">Mid</span></td><td class="price">$569.88</td><td class="price">$556.67</td><td class="down">-2.3%</td><td>+67% 12-month run into mid-2026; off its 25 Jun all-time high of $585.71.</td></tr>
+        <tr><td class="stock-name">Cirrus Logic <span class="ticker">(CRUS)</span></td><td><span class="cap-tag cap-mid">Mid</span></td><td class="price">~$154<span class="price-note">quotes varied $145-$163 at entry</span></td><td class="price">~$146.44<span class="price-note">2 Jul, still inconsistent across sources</span></td><td class="down">-4.9%</td><td>FY26 record revenue ~$2B; debt-free balance sheet.</td></tr>
+        <tr><td class="stock-name">AMD <span class="ticker">(AMD)</span></td><td><span class="cap-tag cap-large">Large</span></td><td class="price">$580.91</td><td class="price">$517.82<span class="price-note">2 Jul close</span></td><td class="down">-10.9%</td><td>Third straight day giving back chip-rally gains despite a raised Wells Fargo price target.</td></tr>
+        <tr><td class="stock-name">Serve Robotics <span class="ticker">(SERV)</span></td><td><span class="cap-tag cap-small">Small</span></td><td class="price">$6.98</td><td class="price">$6.31<span class="price-note">2 Jul close</span></td><td class="down">-9.6%</td><td>Delivery-robotics small-cap, early-stage and high-volatility.</td></tr>
+        <tr><td class="stock-name">Intel <span class="ticker">(INTC)</span></td><td><span class="cap-tag cap-large">Large</span></td><td class="price">$139.63<span class="price-note">this entry was the day's intraday high, not a traded price</span></td><td class="price">$121.00<span class="price-note">date-label conflicts with confirmed market holiday, price itself is latest found</span></td><td class="down">-13.3%<span class="price-note">unreliable — see entry-price flag</span></td><td>Part of the ~$2T combined market-cap chip surge in Q2; pulled back hard on valuation-bubble warnings.</td></tr>
+        <tr><td class="stock-name">Marvell Technology <span class="ticker">(MRVL)</span></td><td><span class="cap-tag cap-large">Large</span></td><td class="price">$296.30</td><td class="price">$245.29<span class="price-note">same date-label caveat as Intel above</span></td><td class="down">-17.2%</td><td>Real round-trip: spiked on AI data-center demand, then reversed hard on gross-margin/pricing-cycle concerns and a CFO share sale during an executive transition.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer class="foot">
+    Day 5 read: 9 up, 11 down, 0 flat, average -1.1%. Cap-size split has flipped since Day 1: small caps now lead (+3.8% avg), driven almost entirely by AeroVironment's real catalyst-to-price story (earnings beat + DoD contract, +15.6%). Large caps are worst (-3.6%), dragged by the broad chip-sector reversal (MRVL -17.2%, INTC -13.3%, AMD -10.9%) — the same three names driving both the "large cap" underperformance and two of the three ongoing entry-price data-quality flags, so treat that large-cap number with some caution. Mid caps sit in between (-1.4%). Still just one week in — nowhere near enough data to draw a real conclusion about whether "in the news" predicts price direction.
+  </footer>
+
+</div>
+
+<script type="application/json" id="cohort-data">
+{
+  "entryDate": "2026-07-01",
+  "windowDays": 14,
+  "cohort": [
+    {"market":"India","name":"Eternal (Zomato)","ticker":"ETERNAL","cap":"Large","entryPrice":264.60,"currency":"INR","lastChecked":"2026-07-06","lastPrice":281.65},
+    {"market":"India","name":"Adani Ports","ticker":"ADANIPORTS","cap":"Large","entryPrice":1810.20,"currency":"INR","lastChecked":"2026-07-06","lastPrice":1874.20},
+    {"market":"India","name":"Titan Company","ticker":"TITAN","cap":"Large","entryPrice":4404.00,"currency":"INR","lastChecked":"2026-07-06","lastPrice":4461.10,"note":"latest confirmed quote is from 3 Jul"},
+    {"market":"India","name":"Mahindra & Mahindra","ticker":"M&M","cap":"Large","entryPrice":3068.80,"currency":"INR","lastChecked":"2026-07-06","lastPrice":3121.30},
+    {"market":"India","name":"Coforge","ticker":"COFORGE","cap":"Large","entryPrice":1486.00,"currency":"INR","lastChecked":"2026-07-06","lastPrice":1464.00},
+    {"market":"India","name":"Bharat Forge","ticker":"BHARATFORG","cap":"Mid","entryPrice":2107.00,"currency":"INR","lastChecked":"2026-07-06","lastPrice":2148.90,"note":"latest confirmed quote is from 2 Jul"},
+    {"market":"India","name":"KEC International","ticker":"KEC","cap":"Mid","entryPrice":541.00,"currency":"INR","lastChecked":"2026-07-06","lastPrice":515.40,"note":"entry price was a stale 23 Jun quote, unreliable baseline"},
+    {"market":"India","name":"HFCL","ticker":"HFCL","cap":"Mid","entryPrice":213.69,"currency":"INR","lastChecked":"2026-07-06","lastPrice":212.23,"note":"latest confirmed quote is from 1 Jul"},
+    {"market":"India","name":"VA Tech Wabag","ticker":"WABAG","cap":"Small","entryPrice":2110.80,"currency":"INR","lastChecked":"2026-07-06","lastPrice":2080.90,"note":"entry price was a stale 25 Jun quote, unreliable baseline"},
+    {"market":"India","name":"SIS Limited","ticker":"SIS","cap":"Small","entryPrice":414.25,"currency":"INR","lastChecked":"2026-07-06","lastPrice":446.00,"note":"carried forward, no fresher confirmed quote"},
+    {"market":"USA","name":"Nvidia","ticker":"NVDA","cap":"Large","entryPrice":200.09,"currency":"USD","lastChecked":"2026-07-06","lastPrice":194.83,"note":"2 Jul close, last completed US session"},
+    {"market":"USA","name":"AMD","ticker":"AMD","cap":"Large","entryPrice":580.91,"currency":"USD","lastChecked":"2026-07-06","lastPrice":517.82,"note":"2 Jul close"},
+    {"market":"USA","name":"Intel","ticker":"INTC","cap":"Large","entryPrice":139.63,"currency":"USD","lastChecked":"2026-07-06","lastPrice":121.00,"note":"entry price was the day's intraday high, unreliable baseline; source date-label conflicts with confirmed market holiday"},
+    {"market":"USA","name":"Marvell Technology","ticker":"MRVL","cap":"Large","entryPrice":296.30,"currency":"USD","lastChecked":"2026-07-06","lastPrice":245.29,"note":"source date-label conflicts with confirmed market holiday"},
+    {"market":"USA","name":"CRISPR Therapeutics","ticker":"CRSP","cap":"Mid","entryPrice":53.86,"currency":"USD","lastChecked":"2026-07-06","lastPrice":55.11,"note":"quotes ranged 53.86-55.11"},
+    {"market":"USA","name":"Cirrus Logic","ticker":"CRUS","cap":"Mid","entryPrice":154.00,"currency":"USD","lastChecked":"2026-07-06","lastPrice":146.44,"note":"quotes inconsistent across sources, both entry and current; 2 Jul"},
+    {"market":"USA","name":"Valmont Industries","ticker":"VMI","cap":"Mid","entryPrice":569.88,"currency":"USD","lastChecked":"2026-07-06","lastPrice":556.67},
+    {"market":"USA","name":"AeroVironment","ticker":"AVAV","cap":"Small","entryPrice":165.07,"currency":"USD","lastChecked":"2026-07-06","lastPrice":190.89,"note":"$500M DoD counter-drone contract + 133% YoY revenue beat"},
+    {"market":"USA","name":"Magnite","ticker":"MGNI","cap":"Small","entryPrice":19.14,"currency":"USD","lastChecked":"2026-07-06","lastPrice":20.44,"note":"carried forward from 2 Jul"},
+    {"market":"USA","name":"Serve Robotics","ticker":"SERV","cap":"Small","entryPrice":6.98,"currency":"USD","lastChecked":"2026-07-06","lastPrice":6.31,"note":"2 Jul close"}
+  ]
+}
+</script>
+</body>
+</html>
