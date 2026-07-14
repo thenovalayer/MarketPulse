@@ -75,11 +75,14 @@ def now_ist_string():
 def extract_json(text: str) -> dict:
     """Pull the first {...} JSON object out of a text blob and parse it.
     The model is instructed to return ONLY JSON, but this is a defensive
-    fallback in case any stray prose sneaks in around it."""
+    fallback in case any stray prose (or a ```json fence) sneaks in around
+    it. strict=False tolerates literal control characters (e.g. a raw
+    newline inside a string value instead of an escaped \\n), which is the
+    most common way an otherwise-fine LLM JSON response fails to parse."""
     match = re.search(r"\{.*\}", text, re.DOTALL)
     if not match:
         raise ValueError(f"No JSON object found in model output:\n{text[:2000]}")
-    return json.loads(match.group(0))
+    return json.loads(match.group(0), strict=False)
 
 
 def tavily_search(query: str, max_results: int = 5) -> str:
@@ -135,7 +138,7 @@ DAILY_PROMPT_TEMPLATE = """You are building a "Daily Market Pulse" briefing, sam
 SEARCH CONTEXT (from live web search just now):
 {search_context}
 
-Using only the information above (plus reasonable synthesis of it), return ONLY a JSON object (no prose before or after) with this exact shape:
+Using only the information above (plus reasonable synthesis of it), return ONLY a valid JSON object (no prose before or after, no markdown code fence) with this exact shape. Every string value must be a single line -- no literal line breaks inside any string, use spaces instead:
 
 {{
   "india": {{
@@ -196,7 +199,7 @@ def build_daily_pulse(env: Environment, date_line: str, compact_ts: str):
 # STEP 2: Forward tracker (fixed cohort, re-priced each run)
 # ---------------------------------------------------------------------------
 
-REPRICE_PROMPT_TEMPLATE = """Based ONLY on the search context below (fetched live moments ago), determine the CURRENT share price for each of these {n} stocks. Return ONLY a JSON object (no prose) mapping each ticker to its current price as a plain number (no currency symbols, no commas) plus an optional one-line note if the quote is stale/uncertain/conflicting in the context:
+REPRICE_PROMPT_TEMPLATE = """Based ONLY on the search context below (fetched live moments ago), determine the CURRENT share price for each of these {n} stocks. Return ONLY a valid JSON object (no prose, no markdown code fence, no literal line breaks inside any string value) mapping each ticker to its current price as a plain number (no currency symbols, no commas) plus an optional one-line note if the quote is stale/uncertain/conflicting in the context:
 
 {{
   "TICKER1": {{"price": 1234.5, "note": ""}},
