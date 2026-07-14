@@ -92,22 +92,21 @@ def extract_json(text: str) -> dict:
         return json.loads(repaired, strict=False)
 
 
-def tavily_search(query: str, max_results: int = 5) -> str:
+def tavily_search(query: str, max_results: int = 5, search_depth: str = "basic", include_domains=None) -> str:
     """Query Tavily's search API and return a plain-text block (title + url +
     snippet per result) suitable for pasting into an LLM prompt as research
     context. Raises on HTTP error so a bad/missing key fails loudly rather
     than silently producing an empty briefing."""
-    resp = requests.post(
-        TAVILY_URL,
-        json={
-            "api_key": TAVILY_API_KEY,
-            "query": query,
-            "search_depth": "basic",
-            "max_results": max_results,
-            "include_answer": False,
-        },
-        timeout=30,
-    )
+    payload = {
+        "api_key": TAVILY_API_KEY,
+        "query": query,
+        "search_depth": search_depth,
+        "max_results": max_results,
+        "include_answer": False,
+    }
+    if include_domains:
+        payload["include_domains"] = include_domains
+    resp = requests.post(TAVILY_URL, json=payload, timeout=30)
     resp.raise_for_status()
     data = resp.json()
     results = data.get("results", [])
@@ -133,11 +132,26 @@ def call_gemini(prompt: str, max_tokens: int = 8000) -> dict:
 # STEP 1: Daily Market Pulse (fresh picks every run)
 # ---------------------------------------------------------------------------
 
+# Each entry is (query, kwargs-for-tavily_search). USA gets more/narrower
+# queries and a nudge toward sites that publish explicit named-mover lists
+# (marketwatch/cnbc/yahoo finance "Stock Market Today" style pieces),
+# because generic USA queries were coming back with macro/geopolitical
+# overview content instead of specific named stocks -- unlike India, where
+# "top gainers/losers" listicle coverage is common enough that basic search
+# finds it easily.
 DAILY_SEARCH_QUERIES = [
-    "India stock market news today Sensex Nifty top gainers losers",
-    "India stocks in the news today order win earnings dividend buyback large mid small cap",
-    "US stock market news today Dow S&P 500 Nasdaq top movers",
-    "US stocks in the news today catalyst earnings contract large mid small cap",
+    ("India stock market news today Sensex Nifty top gainers losers", {"max_results": 6}),
+    ("India stocks in the news today order win earnings dividend buyback large mid small cap", {"max_results": 6}),
+    ("US stock market today biggest gainers and losers specific stock names", {"max_results": 8, "search_depth": "advanced"}),
+    ("US stocks in the news today earnings contract acquisition specific company mid cap small cap", {"max_results": 8, "search_depth": "advanced"}),
+    (
+        "stock market today biggest movers",
+        {
+            "max_results": 6,
+            "search_depth": "advanced",
+            "include_domains": ["marketwatch.com", "cnbc.com", "finance.yahoo.com", "investing.com"],
+        },
+    ),
 ]
 
 DAILY_PROMPT_TEMPLATE = """You are building a "Daily Market Pulse" briefing, same format every day. Base your answer ONLY on the search context provided below -- it was fetched live moments ago, so treat it as current and do not fall back on older training-data knowledge about these companies.
@@ -179,8 +193,8 @@ Rules:
 
 def build_daily_pulse(env: Environment, date_line: str, compact_ts: str):
     context_blocks = []
-    for q in DAILY_SEARCH_QUERIES:
-        context_blocks.append(f"### Search: {q}\n{tavily_search(q)}")
+    for q, kwargs in DAILY_SEARCH_QUERIES:
+        context_blocks.append(f"### Search: {q}\n{tavily_search(q, **kwargs)}")
     search_context = "\n\n".join(context_blocks)
 
     prompt = DAILY_PROMPT_TEMPLATE.format(search_context=search_context)
