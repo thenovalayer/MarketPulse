@@ -42,6 +42,7 @@ import requests
 from google import genai
 from google.genai import types
 from jinja2 import Environment, FileSystemLoader
+from json_repair import repair_json
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATES = ROOT / "templates"
@@ -74,15 +75,21 @@ def now_ist_string():
 
 def extract_json(text: str) -> dict:
     """Pull the first {...} JSON object out of a text blob and parse it.
-    The model is instructed to return ONLY JSON, but this is a defensive
-    fallback in case any stray prose (or a ```json fence) sneaks in around
-    it. strict=False tolerates literal control characters (e.g. a raw
-    newline inside a string value instead of an escaped \\n), which is the
-    most common way an otherwise-fine LLM JSON response fails to parse."""
+    The model is instructed to return ONLY JSON, but LLM output is often
+    *almost* valid JSON -- a raw newline inside a string, a stray unescaped
+    quote inside a company name or catalyst description, a trailing comma.
+    Strategy: try strict parsing first (fast path); if that fails, fall back
+    to json_repair, which is purpose-built to fix exactly this class of
+    LLM-JSON error. Only raise if both fail."""
     match = re.search(r"\{.*\}", text, re.DOTALL)
     if not match:
         raise ValueError(f"No JSON object found in model output:\n{text[:2000]}")
-    return json.loads(match.group(0), strict=False)
+    raw = match.group(0)
+    try:
+        return json.loads(raw, strict=False)
+    except json.JSONDecodeError:
+        repaired = repair_json(raw)
+        return json.loads(repaired, strict=False)
 
 
 def tavily_search(query: str, max_results: int = 5) -> str:
