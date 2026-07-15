@@ -1,7 +1,7 @@
 {
   "entryDate": "2026-07-01",
   "windowDays": 14,
-  "lastChecked": "2026-07-14",
+  "lastChecked": "2026-07-15",
   "cohort": [
     {
       "market": "India",
@@ -10,7 +10,7 @@
       "cap": "Large",
       "entryPrice": 264.6,
       "currency": "INR",
-      "lastPrice": 285.2,
+      "lastPrice": 286.8,
       "why": "Top Nifty gainer on sectoral tailwinds and positive earnings expectations."
     },
     {
@@ -30,7 +30,7 @@
       "cap": "Large",
       "entryPrice": 4404.0,
       "currency": "INR",
-      "lastPrice": 4569.2,
+      "lastPrice": 4573.7,
       "why": "Record date 9 Jul for a \u20b915/share dividend; payment from 28 Jul."
     },
     {
@@ -40,7 +40,7 @@
       "cap": "Large",
       "entryPrice": 3068.8,
       "currency": "INR",
-      "lastPrice": 3160.4,
+      "lastPrice": 3093.3,
       "why": "Auto pack extending gains for a second straight session."
     },
     {
@@ -50,7 +50,7 @@
       "cap": "Large",
       "entryPrice": 1486.0,
       "currency": "INR",
-      "lastPrice": 1464.0,
+      "lastPrice": 1501.8,
       "why": "Biggest large-cap loser on profit booking on 1 Jul \u2014 testing whether it's a dip or a real breakdown."
     },
     {
@@ -60,7 +60,7 @@
       "cap": "Mid",
       "entryPrice": 2107.0,
       "currency": "INR",
-      "lastPrice": 2148.9,
+      "lastPrice": 2117.0,
       "why": "Dividend record date 3 Jul; Q4 profit -17% YoY but revenue +17% YoY."
     },
     {
@@ -70,7 +70,7 @@
       "cap": "Mid",
       "entryPrice": 541.0,
       "currency": "INR",
-      "lastPrice": 515.4,
+      "lastPrice": 489.9,
       "why": "Won \u20b91,754 crore of new orders across T&D, towers, cables.",
       "note": "Entry price was itself a stale pre-1-Jul quote \u2014 treat the day-over-day change as unreliable."
     },
@@ -81,7 +81,7 @@
       "cap": "Mid",
       "entryPrice": 213.69,
       "currency": "INR",
-      "lastPrice": 212.23,
+      "lastPrice": 214.0,
       "why": "\u20b921,206cr order book but ~103\u2013127x P/E \u2014 testing whether valuation catches up with it."
     },
     {
@@ -91,7 +91,7 @@
       "cap": "Small",
       "entryPrice": 2110.8,
       "currency": "INR",
-      "lastPrice": 2080.9,
+      "lastPrice": 2120.0,
       "why": "Opened higher after securing a new international order.",
       "note": "Entry price was itself a stale pre-1-Jul quote \u2014 treat the day-over-day change as unreliable."
     },
@@ -102,7 +102,7 @@
       "cap": "Small",
       "entryPrice": 414.25,
       "currency": "INR",
-      "lastPrice": 446.0,
+      "lastPrice": 435.5,
       "why": "5th buyback announced, up to \u20b9120cr at a 10% premium."
     },
     {
@@ -112,7 +112,7 @@
       "cap": "Large",
       "entryPrice": 200.09,
       "currency": "USD",
-      "lastPrice": 194.83,
+      "lastPrice": 211.82,
       "why": "Leading the AI/chip rally that closed out H1 2026; now cooling in a broad chip-sector pullback."
     },
     {
@@ -122,7 +122,7 @@
       "cap": "Large",
       "entryPrice": 580.91,
       "currency": "USD",
-      "lastPrice": 517.82,
+      "lastPrice": 546.72,
       "why": "Among the biggest chip movers as the AI trade broadens, then gave much of it back."
     },
     {
@@ -132,7 +132,7 @@
       "cap": "Large",
       "entryPrice": 139.63,
       "currency": "USD",
-      "lastPrice": 121.0,
+      "lastPrice": 107.76,
       "why": "Part of the ~$2T combined market-cap chip surge in Q2; pulled back hard on valuation-bubble warnings.",
       "note": "Entry price was the day's intraday high, not a traded price \u2014 treat the day-over-day change as unreliable."
     },
@@ -143,7 +143,7 @@
       "cap": "Large",
       "entryPrice": 296.3,
       "currency": "USD",
-      "lastPrice": 245.29,
+      "lastPrice": 221.8,
       "why": "Real round-trip: spiked on AI data-center demand, then reversed hard on gross-margin/pricing-cycle concerns and a CFO share sale."
     },
     {
@@ -153,7 +153,7 @@
       "cap": "Mid",
       "entryPrice": 53.86,
       "currency": "USD",
-      "lastPrice": 55.11,
+      "lastPrice": 50.46,
       "why": "Best-in-class biotech; added to Russell growth indexes and won expanded FDA approval for Casgevy in younger patients."
     },
     {
@@ -163,7 +163,7 @@
       "cap": "Mid",
       "entryPrice": 154.0,
       "currency": "USD",
-      "lastPrice": 146.44,
+      "lastPrice": 141.62,
       "why": "FY26 record revenue ~$2B; debt-free balance sheet.",
       "note": "Quotes have been inconsistent across sources for this ticker since entry."
     },
@@ -174,7 +174,7 @@
       "cap": "Mid",
       "entryPrice": 569.88,
       "currency": "USD",
-      "lastPrice": 556.67,
+      "lastPrice": 539.79,
       "why": "+67% 12-month run into mid-2026; off its 25 Jun all-time high of $585.71."
     },
     {
