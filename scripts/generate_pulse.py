@@ -140,6 +140,11 @@ def call_gemini(prompt: str, max_tokens: int = 8000) -> dict:
 # "top gainers/losers" listicle coverage is common enough that basic search
 # finds it easily.
 DAILY_SEARCH_QUERIES = [
+    # Dedicated index-level queries FIRST -- stock-mover queries below don't
+    # reliably surface the actual index closing values/points-change, which
+    # was showing up as "N/A" in the rendered page.
+    ("Sensex Nifty 50 today closing value points change percent", {"max_results": 4}),
+    ("Dow Jones S&P 500 Nasdaq Composite today closing value points change percent", {"max_results": 4, "search_depth": "advanced"}),
     ("India stock market news today Sensex Nifty top gainers losers", {"max_results": 6}),
     ("India stocks in the news today order win earnings dividend buyback large mid small cap", {"max_results": 6}),
     ("US stock market today biggest gainers and losers specific stock names", {"max_results": 8, "search_depth": "advanced"}),
@@ -188,6 +193,7 @@ Rules:
 - If a stock's price is stretched on valuation (very high P/E, huge run already priced in), set "flag" to a short risk note; otherwise leave flag as "".
 - If a price is uncertain, missing, or conflicting in the search context, put the caveat in "price_note" (e.g. "quotes varied $145-$163") rather than presenting false precision.
 - Never fabricate a stock, price, or catalyst that isn't actually supported by the search context above. If the context is too thin to fill all 10 slots for a market, use fewer stocks rather than inventing ones.
+- If an index's actual value/points-change truly isn't in the search context, set "val" to "N/A" and "chg" to "" (empty string) -- do NOT write an explanatory sentence into "chg" (e.g. never "Live data missing from source templates"); any such explanation belongs only in the Drivers card's "chg" text, never in a numeric index card.
 """
 
 
