@@ -234,6 +234,31 @@ def enrich_with_fundamentals(stock: dict, market: str) -> None:
         stock["flag"] = f"{existing}; {combined}".strip("; ") if existing else combined
 
 
+def check_promoter_pledge(stock: dict) -> None:
+    """India-only overlay. Screener.in has no official API (deliberately not
+    scraping it -- see conversation), so this is a lighter-weight substitute:
+    a targeted Tavily search for news mentioning promoter share pledging on
+    this specific company. If the word "pledge" turns up in recent coverage,
+    flag it as worth checking -- this is a keyword trigger on live news, NOT
+    a verified pledge percentage. Absence of a flag does NOT mean zero
+    pledge; it means no recent news mentioned it, which is the normal case
+    for most companies. Always verify the real number on Screener.in before
+    acting on this flag."""
+    name = stock.get("name", "")
+    if not name:
+        return
+    query = f"{name} promoter pledge shareholding"
+    try:
+        text = tavily_search(query, max_results=3)
+    except Exception:
+        return
+    if "pledge" not in text.lower():
+        return
+    note = "promoter pledge mentioned in recent news -- verify actual % on Screener.in before acting"
+    existing = stock.get("flag", "")
+    stock["flag"] = f"{existing}; {note}" if existing else note
+
+
 def build_daily_pulse(env: Environment, date_line: str, compact_ts: str):
     context_blocks = []
     for q, kwargs in DAILY_SEARCH_QUERIES:
@@ -257,6 +282,7 @@ def build_daily_pulse(env: Environment, date_line: str, compact_ts: str):
 
     for stock in data["india"].get("stocks", []):
         enrich_with_fundamentals(stock, "india")
+        check_promoter_pledge(stock)
     for stock in data["usa"].get("stocks", []):
         enrich_with_fundamentals(stock, "usa")
 
