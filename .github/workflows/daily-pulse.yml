@@ -6,7 +6,7 @@ on:
     # GitHub Actions cron is ALWAYS UTC -- adjust the hour/minute if you
     # change timezone assumptions, and remember cron jobs can be delayed
     # by a few minutes on GitHub's shared runners, especially at busy times.
-    - cron: "32 2 * * 1-5"
+    - cron: "30 2 * * 1-5"
   workflow_dispatch: {}   # lets you click "Run workflow" manually in the Actions tab
 
 permissions:
