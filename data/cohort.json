@@ -1,7 +1,7 @@
 {
   "entryDate": "2026-07-01",
   "windowDays": 14,
-  "lastChecked": "2026-07-23",
+  "lastChecked": "2026-07-24",
   "cohort": [
     {
       "market": "India",
@@ -10,7 +10,7 @@
       "cap": "Large",
       "entryPrice": 264.6,
       "currency": "INR",
-      "lastPrice": 287,
+      "lastPrice": 285.1,
       "why": "Top Nifty gainer on sectoral tailwinds and positive earnings expectations."
     },
     {
@@ -30,7 +30,7 @@
       "cap": "Large",
       "entryPrice": 4404.0,
       "currency": "INR",
-      "lastPrice": 4672,
+      "lastPrice": 4573.7,
       "why": "Record date 9 Jul for a \u20b915/share dividend; payment from 28 Jul."
     },
     {
@@ -40,7 +40,7 @@
       "cap": "Large",
       "entryPrice": 3068.8,
       "currency": "INR",
-      "lastPrice": 3095.88,
+      "lastPrice": 3229.7,
       "why": "Auto pack extending gains for a second straight session."
     },
     {
@@ -50,7 +50,7 @@
       "cap": "Large",
       "entryPrice": 1486.0,
       "currency": "INR",
-      "lastPrice": 1485.1,
+      "lastPrice": 1439.9,
       "why": "Biggest large-cap loser on profit booking on 1 Jul \u2014 testing whether it's a dip or a real breakdown."
     },
     {
@@ -60,7 +60,7 @@
       "cap": "Mid",
       "entryPrice": 2107.0,
       "currency": "INR",
-      "lastPrice": 2209,
+      "lastPrice": 2209.0,
       "why": "Dividend record date 3 Jul; Q4 profit -17% YoY but revenue +17% YoY."
     },
     {
@@ -81,7 +81,7 @@
       "cap": "Mid",
       "entryPrice": 213.69,
       "currency": "INR",
-      "lastPrice": 217.9,
+      "lastPrice": 62.37,
       "why": "\u20b921,206cr order book but ~103\u2013127x P/E \u2014 testing whether valuation catches up with it."
     },
     {
@@ -91,7 +91,7 @@
       "cap": "Small",
       "entryPrice": 2110.8,
       "currency": "INR",
-      "lastPrice": 2100.2,
+      "lastPrice": 2062.8,
       "why": "Opened higher after securing a new international order.",
       "note": "Entry price was itself a stale pre-1-Jul quote \u2014 treat the day-over-day change as unreliable."
     },
@@ -102,7 +102,7 @@
       "cap": "Small",
       "entryPrice": 414.25,
       "currency": "INR",
-      "lastPrice": 441.2,
+      "lastPrice": 441.25,
       "why": "5th buyback announced, up to \u20b9120cr at a 10% premium."
     },
     {
@@ -112,7 +112,7 @@
       "cap": "Large",
       "entryPrice": 200.09,
       "currency": "USD",
-      "lastPrice": 202.55,
+      "lastPrice": 208.76,
       "why": "Leading the AI/chip rally that closed out H1 2026; now cooling in a broad chip-sector pullback."
     },
     {
@@ -122,7 +122,7 @@
       "cap": "Large",
       "entryPrice": 580.91,
       "currency": "USD",
-      "lastPrice": 534.99,
+      "lastPrice": 542.21,
       "why": "Among the biggest chip movers as the AI trade broadens, then gave much of it back."
     },
     {
@@ -132,7 +132,7 @@
       "cap": "Large",
       "entryPrice": 139.63,
       "currency": "USD",
-      "lastPrice": 105.67,
+      "lastPrice": 103.08,
       "why": "Part of the ~$2T combined market-cap chip surge in Q2; pulled back hard on valuation-bubble warnings.",
       "note": "Entry price was the day's intraday high, not a traded price \u2014 treat the day-over-day change as unreliable."
     },
@@ -143,7 +143,7 @@
       "cap": "Large",
       "entryPrice": 296.3,
       "currency": "USD",
-      "lastPrice": 211.75,
+      "lastPrice": 210.28,
       "why": "Real round-trip: spiked on AI data-center demand, then reversed hard on gross-margin/pricing-cycle concerns and a CFO share sale."
     },
     {
@@ -174,7 +174,7 @@
       "cap": "Mid",
       "entryPrice": 569.88,
       "currency": "USD",
-      "lastPrice": 531.66,
+      "lastPrice": 487.5,
       "why": "+67% 12-month run into mid-2026; off its 25 Jun all-time high of $585.71."
     },
     {
@@ -184,7 +184,7 @@
       "cap": "Small",
       "entryPrice": 165.07,
       "currency": "USD",
-      "lastPrice": 154.57,
+      "lastPrice": 160.39,
       "why": "+30% 1-day pop on blockbuster earnings, then a $500M DoD counter-drone contract on top of it."
     },
     {
