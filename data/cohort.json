@@ -1,7 +1,7 @@
 {
   "entryDate": "2026-07-01",
   "windowDays": 14,
-  "lastChecked": "2026-07-27",
+  "lastChecked": "2026-07-28",
   "cohort": [
     {
       "market": "India",
@@ -10,7 +10,7 @@
       "cap": "Large",
       "entryPrice": 264.6,
       "currency": "INR",
-      "lastPrice": 285.1,
+      "lastPrice": 280.05,
       "why": "Top Nifty gainer on sectoral tailwinds and positive earnings expectations."
     },
     {
@@ -30,7 +30,7 @@
       "cap": "Large",
       "entryPrice": 4404.0,
       "currency": "INR",
-      "lastPrice": 4573.7,
+      "lastPrice": 4740.1,
       "why": "Record date 9 Jul for a \u20b915/share dividend; payment from 28 Jul."
     },
     {
@@ -50,7 +50,7 @@
       "cap": "Large",
       "entryPrice": 1486.0,
       "currency": "INR",
-      "lastPrice": 1484.7,
+      "lastPrice": 1508.0,
       "why": "Biggest large-cap loser on profit booking on 1 Jul \u2014 testing whether it's a dip or a real breakdown."
     },
     {
@@ -60,7 +60,7 @@
       "cap": "Mid",
       "entryPrice": 2107.0,
       "currency": "INR",
-      "lastPrice": 2117.0,
+      "lastPrice": 2191.4,
       "why": "Dividend record date 3 Jul; Q4 profit -17% YoY but revenue +17% YoY."
     },
     {
@@ -70,7 +70,7 @@
       "cap": "Mid",
       "entryPrice": 541.0,
       "currency": "INR",
-      "lastPrice": 469.9,
+      "lastPrice": 464.45,
       "why": "Won \u20b91,754 crore of new orders across T&D, towers, cables.",
       "note": "Entry price was itself a stale pre-1-Jul quote \u2014 treat the day-over-day change as unreliable."
     },
@@ -91,7 +91,7 @@
       "cap": "Small",
       "entryPrice": 2110.8,
       "currency": "INR",
-      "lastPrice": 2062.8,
+      "lastPrice": 1977.5,
       "why": "Opened higher after securing a new international order.",
       "note": "Entry price was itself a stale pre-1-Jul quote \u2014 treat the day-over-day change as unreliable."
     },
@@ -102,7 +102,7 @@
       "cap": "Small",
       "entryPrice": 414.25,
       "currency": "INR",
-      "lastPrice": 437.55,
+      "lastPrice": 437.3,
       "why": "5th buyback announced, up to \u20b9120cr at a 10% premium."
     },
     {
@@ -112,7 +112,7 @@
       "cap": "Large",
       "entryPrice": 200.09,
       "currency": "USD",
-      "lastPrice": 206.8,
+      "lastPrice": 196.51,
       "why": "Leading the AI/chip rally that closed out H1 2026; now cooling in a broad chip-sector pullback."
     },
     {
@@ -132,7 +132,7 @@
       "cap": "Large",
       "entryPrice": 139.63,
       "currency": "USD",
-      "lastPrice": 92.32,
+      "lastPrice": 90.95,
       "why": "Part of the ~$2T combined market-cap chip surge in Q2; pulled back hard on valuation-bubble warnings.",
       "note": "Entry price was the day's intraday high, not a traded price \u2014 treat the day-over-day change as unreliable."
     },
