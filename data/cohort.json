@@ -1,7 +1,7 @@
 {
   "entryDate": "2026-07-01",
   "windowDays": 14,
-  "lastChecked": "2026-08-03",
+  "lastChecked": "2026-08-04",
   "cohort": [
     {
       "market": "India",
@@ -30,7 +30,7 @@
       "cap": "Large",
       "entryPrice": 4404.0,
       "currency": "INR",
-      "lastPrice": 4885.0,
+      "lastPrice": 4837.5,
       "why": "Record date 9 Jul for a \u20b915/share dividend; payment from 28 Jul."
     },
     {
@@ -40,7 +40,7 @@
       "cap": "Large",
       "entryPrice": 3068.8,
       "currency": "INR",
-      "lastPrice": 3271.2,
+      "lastPrice": 3165.5,
       "why": "Auto pack extending gains for a second straight session."
     },
     {
@@ -50,7 +50,7 @@
       "cap": "Large",
       "entryPrice": 1486.0,
       "currency": "INR",
-      "lastPrice": 1721.0,
+      "lastPrice": 1731.4,
       "why": "Biggest large-cap loser on profit booking on 1 Jul \u2014 testing whether it's a dip or a real breakdown."
     },
     {
@@ -102,7 +102,7 @@
       "cap": "Small",
       "entryPrice": 414.25,
       "currency": "INR",
-      "lastPrice": 422.4,
+      "lastPrice": 425.15,
       "why": "5th buyback announced, up to \u20b9120cr at a 10% premium."
     },
     {
