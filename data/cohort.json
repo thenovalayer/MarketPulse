@@ -1,7 +1,7 @@
 {
   "entryDate": "2026-07-01",
   "windowDays": 14,
-  "lastChecked": "2026-08-10",
+  "lastChecked": "2026-08-11",
   "cohort": [
     {
       "market": "India",
@@ -20,7 +20,7 @@
       "cap": "Large",
       "entryPrice": 1810.2,
       "currency": "INR",
-      "lastPrice": 1706.7,
+      "lastPrice": 1681.0,
       "why": "Among the day's top Nifty50 gainers; later hit a lifetime high on the MSC/Vizhinjam Port deal."
     },
     {
@@ -40,7 +40,7 @@
       "cap": "Large",
       "entryPrice": 3068.8,
       "currency": "INR",
-      "lastPrice": 3449.9,
+      "lastPrice": 3278.7,
       "why": "Auto pack extending gains for a second straight session."
     },
     {
@@ -70,7 +70,7 @@
       "cap": "Mid",
       "entryPrice": 541.0,
       "currency": "INR",
-      "lastPrice": 478.8,
+      "lastPrice": 475.85,
       "why": "Won \u20b91,754 crore of new orders across T&D, towers, cables.",
       "note": "Entry price was itself a stale pre-1-Jul quote \u2014 treat the day-over-day change as unreliable."
     },
@@ -81,7 +81,7 @@
       "cap": "Mid",
       "entryPrice": 213.69,
       "currency": "INR",
-      "lastPrice": 207.98,
+      "lastPrice": 213.0,
       "why": "\u20b921,206cr order book but ~103\u2013127x P/E \u2014 testing whether valuation catches up with it."
     },
     {
@@ -102,7 +102,7 @@
       "cap": "Small",
       "entryPrice": 414.25,
       "currency": "INR",
-      "lastPrice": 430.55,
+      "lastPrice": 427.0,
       "why": "5th buyback announced, up to \u20b9120cr at a 10% premium."
     },
     {
@@ -122,7 +122,7 @@
       "cap": "Large",
       "entryPrice": 580.91,
       "currency": "USD",
-      "lastPrice": 483.36,
+      "lastPrice": 469.29,
       "why": "Among the biggest chip movers as the AI trade broadens, then gave much of it back."
     },
     {
@@ -132,7 +132,7 @@
       "cap": "Large",
       "entryPrice": 139.63,
       "currency": "USD",
-      "lastPrice": 101.65,
+      "lastPrice": 97.52,
       "why": "Part of the ~$2T combined market-cap chip surge in Q2; pulled back hard on valuation-bubble warnings.",
       "note": "Entry price was the day's intraday high, not a traded price \u2014 treat the day-over-day change as unreliable."
     },
@@ -143,7 +143,7 @@
       "cap": "Large",
       "entryPrice": 296.3,
       "currency": "USD",
-      "lastPrice": 218.72,
+      "lastPrice": 218.7,
       "why": "Real round-trip: spiked on AI data-center demand, then reversed hard on gross-margin/pricing-cycle concerns and a CFO share sale."
     },
     {
@@ -153,7 +153,7 @@
       "cap": "Mid",
       "entryPrice": 53.86,
       "currency": "USD",
-      "lastPrice": 53.54,
+      "lastPrice": 47.99,
       "why": "Best-in-class biotech; added to Russell growth indexes and won expanded FDA approval for Casgevy in younger patients."
     },
     {
@@ -204,7 +204,7 @@
       "cap": "Small",
       "entryPrice": 6.98,
       "currency": "USD",
-      "lastPrice": 4.72,
+      "lastPrice": 5.08,
       "why": "Delivery-robotics small-cap, early-stage and high-volatility."
     }
   ]
