@@ -1,7 +1,7 @@
 {
   "entryDate": "2026-07-01",
   "windowDays": 14,
-  "lastChecked": "2026-08-12",
+  "lastChecked": "2026-08-13",
   "cohort": [
     {
       "market": "India",
@@ -20,7 +20,7 @@
       "cap": "Large",
       "entryPrice": 1810.2,
       "currency": "INR",
-      "lastPrice": 1664.0,
+      "lastPrice": 1657.2,
       "why": "Among the day's top Nifty50 gainers; later hit a lifetime high on the MSC/Vizhinjam Port deal."
     },
     {
@@ -40,7 +40,7 @@
       "cap": "Large",
       "entryPrice": 3068.8,
       "currency": "INR",
-      "lastPrice": 3449.9,
+      "lastPrice": 3517.0,
       "why": "Auto pack extending gains for a second straight session."
     },
     {
@@ -50,7 +50,7 @@
       "cap": "Large",
       "entryPrice": 1486.0,
       "currency": "INR",
-      "lastPrice": 1776.0,
+      "lastPrice": 1801.5,
       "why": "Biggest large-cap loser on profit booking on 1 Jul \u2014 testing whether it's a dip or a real breakdown."
     },
     {
@@ -70,7 +70,7 @@
       "cap": "Mid",
       "entryPrice": 541.0,
       "currency": "INR",
-      "lastPrice": 478.8,
+      "lastPrice": 443.85,
       "why": "Won \u20b91,754 crore of new orders across T&D, towers, cables.",
       "note": "Entry price was itself a stale pre-1-Jul quote \u2014 treat the day-over-day change as unreliable."
     },
@@ -91,7 +91,7 @@
       "cap": "Small",
       "entryPrice": 2110.8,
       "currency": "INR",
-      "lastPrice": 1871.6,
+      "lastPrice": 1957.7,
       "why": "Opened higher after securing a new international order.",
       "note": "Entry price was itself a stale pre-1-Jul quote \u2014 treat the day-over-day change as unreliable."
     },
@@ -112,7 +112,7 @@
       "cap": "Large",
       "entryPrice": 200.09,
       "currency": "USD",
-      "lastPrice": 222.15,
+      "lastPrice": 217.55,
       "why": "Leading the AI/chip rally that closed out H1 2026; now cooling in a broad chip-sector pullback."
     },
     {
@@ -122,7 +122,7 @@
       "cap": "Large",
       "entryPrice": 580.91,
       "currency": "USD",
-      "lastPrice": 469.29,
+      "lastPrice": 482.93,
       "why": "Among the biggest chip movers as the AI trade broadens, then gave much of it back."
     },
     {
@@ -132,7 +132,7 @@
       "cap": "Large",
       "entryPrice": 139.63,
       "currency": "USD",
-      "lastPrice": 97.37,
+      "lastPrice": 97.94,
       "why": "Part of the ~$2T combined market-cap chip surge in Q2; pulled back hard on valuation-bubble warnings.",
       "note": "Entry price was the day's intraday high, not a traded price \u2014 treat the day-over-day change as unreliable."
     },
@@ -153,7 +153,7 @@
       "cap": "Mid",
       "entryPrice": 53.86,
       "currency": "USD",
-      "lastPrice": 53.54,
+      "lastPrice": 54.07,
       "why": "Best-in-class biotech; added to Russell growth indexes and won expanded FDA approval for Casgevy in younger patients."
     },
     {
@@ -163,7 +163,7 @@
       "cap": "Mid",
       "entryPrice": 154.0,
       "currency": "USD",
-      "lastPrice": 124.92,
+      "lastPrice": 121.99,
       "why": "FY26 record revenue ~$2B; debt-free balance sheet.",
       "note": "Quotes have been inconsistent across sources for this ticker since entry."
     },
@@ -204,7 +204,7 @@
       "cap": "Small",
       "entryPrice": 6.98,
       "currency": "USD",
-      "lastPrice": 4.37,
+      "lastPrice": 4.89,
       "why": "Delivery-robotics small-cap, early-stage and high-volatility."
     }
   ]
