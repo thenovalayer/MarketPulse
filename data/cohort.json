@@ -1,7 +1,7 @@
 {
   "entryDate": "2026-07-01",
   "windowDays": 14,
-  "lastChecked": "2026-08-13",
+  "lastChecked": "2026-08-14",
   "cohort": [
     {
       "market": "India",
@@ -10,7 +10,7 @@
       "cap": "Large",
       "entryPrice": 264.6,
       "currency": "INR",
-      "lastPrice": 316.7,
+      "lastPrice": 314.3,
       "why": "Top Nifty gainer on sectoral tailwinds and positive earnings expectations."
     },
     {
@@ -20,7 +20,7 @@
       "cap": "Large",
       "entryPrice": 1810.2,
       "currency": "INR",
-      "lastPrice": 1657.2,
+      "lastPrice": 1665.0,
       "why": "Among the day's top Nifty50 gainers; later hit a lifetime high on the MSC/Vizhinjam Port deal."
     },
     {
@@ -30,7 +30,7 @@
       "cap": "Large",
       "entryPrice": 4404.0,
       "currency": "INR",
-      "lastPrice": 5128.0,
+      "lastPrice": 5099.0,
       "why": "Record date 9 Jul for a \u20b915/share dividend; payment from 28 Jul."
     },
     {
@@ -40,7 +40,7 @@
       "cap": "Large",
       "entryPrice": 3068.8,
       "currency": "INR",
-      "lastPrice": 3517.0,
+      "lastPrice": 3403.6,
       "why": "Auto pack extending gains for a second straight session."
     },
     {
@@ -50,7 +50,7 @@
       "cap": "Large",
       "entryPrice": 1486.0,
       "currency": "INR",
-      "lastPrice": 1801.5,
+      "lastPrice": 1829.0,
       "why": "Biggest large-cap loser on profit booking on 1 Jul \u2014 testing whether it's a dip or a real breakdown."
     },
     {
@@ -70,7 +70,7 @@
       "cap": "Mid",
       "entryPrice": 541.0,
       "currency": "INR",
-      "lastPrice": 443.85,
+      "lastPrice": 446.4,
       "why": "Won \u20b91,754 crore of new orders across T&D, towers, cables.",
       "note": "Entry price was itself a stale pre-1-Jul quote \u2014 treat the day-over-day change as unreliable."
     },
@@ -81,7 +81,7 @@
       "cap": "Mid",
       "entryPrice": 213.69,
       "currency": "INR",
-      "lastPrice": 214.24,
+      "lastPrice": 209.61,
       "why": "\u20b921,206cr order book but ~103\u2013127x P/E \u2014 testing whether valuation catches up with it."
     },
     {
@@ -91,7 +91,7 @@
       "cap": "Small",
       "entryPrice": 2110.8,
       "currency": "INR",
-      "lastPrice": 1957.7,
+      "lastPrice": 1951.5,
       "why": "Opened higher after securing a new international order.",
       "note": "Entry price was itself a stale pre-1-Jul quote \u2014 treat the day-over-day change as unreliable."
     },
@@ -102,7 +102,7 @@
       "cap": "Small",
       "entryPrice": 414.25,
       "currency": "INR",
-      "lastPrice": 438.45,
+      "lastPrice": 425.15,
       "why": "5th buyback announced, up to \u20b9120cr at a 10% premium."
     },
     {
@@ -112,7 +112,7 @@
       "cap": "Large",
       "entryPrice": 200.09,
       "currency": "USD",
-      "lastPrice": 217.55,
+      "lastPrice": 223.96,
       "why": "Leading the AI/chip rally that closed out H1 2026; now cooling in a broad chip-sector pullback."
     },
     {
@@ -122,7 +122,7 @@
       "cap": "Large",
       "entryPrice": 580.91,
       "currency": "USD",
-      "lastPrice": 482.93,
+      "lastPrice": 494.27,
       "why": "Among the biggest chip movers as the AI trade broadens, then gave much of it back."
     },
     {
@@ -132,7 +132,7 @@
       "cap": "Large",
       "entryPrice": 139.63,
       "currency": "USD",
-      "lastPrice": 97.94,
+      "lastPrice": 101.17,
       "why": "Part of the ~$2T combined market-cap chip surge in Q2; pulled back hard on valuation-bubble warnings.",
       "note": "Entry price was the day's intraday high, not a traded price \u2014 treat the day-over-day change as unreliable."
     },
@@ -143,7 +143,7 @@
       "cap": "Large",
       "entryPrice": 296.3,
       "currency": "USD",
-      "lastPrice": 212.31,
+      "lastPrice": 217.08,
       "why": "Real round-trip: spiked on AI data-center demand, then reversed hard on gross-margin/pricing-cycle concerns and a CFO share sale."
     },
     {
@@ -163,7 +163,7 @@
       "cap": "Mid",
       "entryPrice": 154.0,
       "currency": "USD",
-      "lastPrice": 121.99,
+      "lastPrice": 124.92,
       "why": "FY26 record revenue ~$2B; debt-free balance sheet.",
       "note": "Quotes have been inconsistent across sources for this ticker since entry."
     },
@@ -174,7 +174,7 @@
       "cap": "Mid",
       "entryPrice": 569.88,
       "currency": "USD",
-      "lastPrice": 492.24,
+      "lastPrice": 492.2,
       "why": "+67% 12-month run into mid-2026; off its 25 Jun all-time high of $585.71."
     },
     {
@@ -184,7 +184,7 @@
       "cap": "Small",
       "entryPrice": 165.07,
       "currency": "USD",
-      "lastPrice": 187.97,
+      "lastPrice": 187.91,
       "why": "+30% 1-day pop on blockbuster earnings, then a $500M DoD counter-drone contract on top of it."
     },
     {
@@ -194,7 +194,7 @@
       "cap": "Small",
       "entryPrice": 19.14,
       "currency": "USD",
-      "lastPrice": 24.21,
+      "lastPrice": 24.55,
       "why": "Digital-ad small-cap flagged with positive momentum."
     },
     {
@@ -204,7 +204,7 @@
       "cap": "Small",
       "entryPrice": 6.98,
       "currency": "USD",
-      "lastPrice": 4.89,
+      "lastPrice": 4.94,
       "why": "Delivery-robotics small-cap, early-stage and high-volatility."
     }
   ]
